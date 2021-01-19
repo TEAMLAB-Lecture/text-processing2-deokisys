@@ -28,7 +28,13 @@ def digits_to_words(input_string):
             >>> tp2.digits_to_words(digits_str2)
             'three one four one five'
     """
-    digit_string = None
+    word = ['zero','one','two','three','four','five','six','seven','eight','nine']
+    result = []
+    for ele in input_string:
+        if ele.isdigit():
+            result.append(word[int(ele)])
+
+    digit_string = ' '.join(result)
     return digit_string
 
 
@@ -64,5 +70,21 @@ def to_camel_case(underscore_str):
             >>> tp2.to_camel_case(underscore_str3)
             "alreadyCamel"
     """
-    camelcase_str = None
+    strList = underscore_str.split("_")
+    # 빈배열 제거
+    strList = [v for v in strList if v]
+
+    # 앞단어만 대문자로 변경
+    for index in range(1,len(strList)):
+        strList[index]= strList[index].capitalize()
+    
+    # 하나의 요소만 있을때, 앞에 요소만 있을때
+    # 앞글자가 대문자인지 확인, 대문자면 소문자로 변경
+    # 앞글자가 소문자면 참
+    if len(strList)>0:# 갯수가 0보다 큰경우
+        if strList[0][0].isupper():
+            strList[0] = strList[0].lower()
+
+    
+    camelcase_str = ''.join(strList)
     return camelcase_str
